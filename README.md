@@ -77,25 +77,25 @@ python app/main.py
 ```
 🔄 Fluxo de Funcionamento
 
-Cliente MCP
+- Cliente MCP
    ↓
-Gerenciamento de Contexto
+- Gerenciamento de Contexto
    ↓
-Adapter (OpenAI / Hugging Face)
+- Adapter (OpenAI / Hugging Face)
    ↓
-Modelo de Linguagem (LLM)
+- Modelo de Linguagem (LLM)
    ↓
-Resposta estruturada
+- Resposta estruturada
 
 ---
 
 📡 Funcionalidades
 
-🔌 Cliente MCP para integração com LLMs
-🧠 Gerenciamento de contexto de conversa
-🔄 Abstração de provedores de IA
-⚙️ Configuração flexível
-📡 Interface para envio de prompts
+- 🔌 Cliente MCP para integração com LLMs
+- 🧠 Gerenciamento de contexto de conversa
+- 🔄 Abstração de provedores de IA
+- ⚙️ Configuração flexível
+- 📡 Interface para envio de prompts
 
 ---
 
@@ -117,11 +117,11 @@ Resposta estruturada
 
 🧠 Decisões Técnicas
 
-Uso de abstração MCP para desacoplar lógica de IA
-Separação por adapters para múltiplos provedores
-Gerenciamento de contexto para conversas mais inteligentes
-Configuração via .env para segurança
-Estrutura modular para fácil expansão
+- Uso de abstração MCP para desacoplar lógica de IA
+- Separação por adapters para múltiplos provedores
+- Gerenciamento de contexto para conversas mais inteligentes
+- Configuração via .env para segurança
+- Estrutura modular para fácil expansão
 
 ---
 
