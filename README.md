@@ -1,80 +1,190 @@
-# 🚀 MCP Client with Gemini AI
+# 🔌 MCP Client — Integração com Model Context Protocol
 
-[📢 Subscribe to The AI Language on YouTube!](https://youtube.com/@theailanguage?sub_confirmation=1)
+Projeto que implementa um **cliente MCP (Model Context Protocol)** para comunicação com modelos de linguagem e serviços de IA de forma estruturada, padronizada e extensível.
 
-Welcome! This project features multiple MCP clients integrated with **Google Gemini AI** to execute tasks via the **Model Context Protocol (MCP)** — with and without LangChain.
-
-Happy building, and don’t forget to subscribe!  
-
-
-## MCP Client Options
-
-This repository includes **four MCP client options** for various use cases:
-
-| Option | Client Script | LangChain | Config Support | Transport | Tutorial |
-|--------|-------------------------------|------------|----------------|-----------|----------|
-| 1 | `client.py` | ❌ | ❌ | STDIO | [Legacy Client](https://youtu.be/GAPncIfnDwg) |
-| 2 | `langchain_mcp_client.py` | ✅ | ❌ | STDIO | [LangChain Client](https://youtu.be/hccNm88bk6w) |
-| 3 | `langchain_mcp_client_wconfig.py` | ✅ | ✅ | STDIO | [Multi-Server](https://youtu.be/nCnBWVv2uTA) |
-| 4 | `client_sse.py` | ❌ | ❌ | SSE (Loca & Web) | [SSE Client](https://youtu.be/s0YJNcT1XMA) |
-
-If you want to add or reuse MCP Servers, check out [the MCP Servers repo](https://github.com/modelcontextprotocol/servers).
+O MCP permite desacoplar aplicações da implementação específica de modelos (como OpenAI, Hugging Face, etc.), criando uma camada intermediária para gerenciamento de contexto, prompts e respostas.
 
 ---
 
-## ✪ Features
+## 🧠 O que é MCP (Model Context Protocol)
 
-✅ Connects to an MCP server (STDIO or SSE)  
-✅ Uses **Google Gemini AI** to interpret user prompts  
-✅ Allows **Gemini to call MCP tools** via server  
-✅ Executes tool commands and returns results  
-✅ (Upcoming) Maintains context and history for conversations  
+O **Model Context Protocol (MCP)** é um padrão que facilita:
+
+- 🔄 Comunicação padronizada com LLMs  
+- 🧠 Gerenciamento de contexto de conversas  
+- 🔌 Integração com múltiplos provedores de IA  
+- 📦 Abstração de prompts e respostas  
 
 ---
 
-### Running the MCP Client
+## 🚀 Tecnologias Utilizadas
 
-Choose the appropriate command for your preferred client:
+### 🔙 Backend / Cliente
+- Python 3.10+ *(ou Node.js dependendo da implementação)*  
+- Requests / HTTPX / Axios  
+- dotenv  
 
-- **Legacy STDIO** — `uv run client.py path/to/server.py`
-- **LangChain STDIO** — `uv run langchain_mcp_client.py path/to/server.py`
-- **LangChain Multi-Server STDIO** — `uv run langchain_mcp_client_wconfig.py path/to/config.json`
-- **SSE Client** — `uv run client_sse.py sse_server_url`
+### 🧠 Integração com IA
+- OpenAI API  
+- Hugging Face *(opcional)*  
+- Outros provedores compatíveis  
 
-### Project Structure
+### ⚙️ Arquitetura
+- Cliente modular MCP  
+- Gerenciamento de contexto  
+- Abstração de chamadas de modelo  
 
+---
+
+## ⚙️ Como Rodar o Projeto Localmente
+
+### 1️⃣ Clonar o Repositório
+
+```bash
+git clone <url-do-repositorio>
+cd mcp_client-main
 ```
-mcp-client-gemini/
-├── client.py                        # Basic client (STDIO)
-├── langchain_mcp_client.py         # LangChain + Gemini
-├── langchain_mcp_client_wconfig.py # LangChain + config.json (multi-server)
-├── client_sse.py                   # SSE transport client (local or remote)
-├── .env                            # API key environment file
-├── README.md                       # Project documentation
-├── requirements.txt                # Dependency list
-├── .gitignore                      # Git ignore rules
-├── LICENSE                         # License information
+2️⃣ Criar Ambiente (se Python)
+```
+python -m venv venv
+source venv/bin/activate
 ```
 
-### How It Works
+Windows:
+```
+venv\Scripts\activate
+```
+3️⃣ Instalar Dependências
+```
+pip install -r requirements.txt
+```
+4️⃣ Configurar Variáveis de Ambiente
 
-1. You send a prompt:
-   > Create a file named test.txt
-2. The prompt is sent to **Google Gemini AI**.
-3. Gemini uses available **MCP tools** to determine a response.
-4. The selected tool is executed on the **connected server**.
-5. The AI returns results and maintains **conversation context** (if supported).
+Crie um arquivo .env:
+```
+OPENAI_API_KEY=your_api_key_here
+API_BASE_URL=https://api.openai.com
+MODEL_NAME=gpt-4
+```
 
-## 🤝 Contributing
+5️⃣ Executar o Cliente
+```
+python main.py
+```
+Ou conforme estrutura:
+```
+python app/main.py
+```
+🔄 Fluxo de Funcionamento
 
-At this time, this project does **not accept external code contributions**.
+Cliente MCP
+   ↓
+Gerenciamento de Contexto
+   ↓
+Adapter (OpenAI / Hugging Face)
+   ↓
+Modelo de Linguagem (LLM)
+   ↓
+Resposta estruturada
 
-This is to keep licensing simple and avoid any shared copyright.
+---
 
-You're very welcome to:
-✅ Report bugs or request features (via GitHub Issues)  
-✅ Fork the repo and build your own version  
-✅ Suggest documentation improvements
+📡 Funcionalidades
 
-If you'd like to collaborate in another way, feel free to open a discussion!
+🔌 Cliente MCP para integração com LLMs
+🧠 Gerenciamento de contexto de conversa
+🔄 Abstração de provedores de IA
+⚙️ Configuração flexível
+📡 Interface para envio de prompts
 
+---
+
+🏗️ Estrutura do Projeto
+```
+.
+├── app/
+│   ├── client/
+│   ├── adapters/
+│   ├── context/
+│   └── main.py
+├── config/
+├── requirements.txt
+├── .env
+└── README.md
+```
+
+---
+
+🧠 Decisões Técnicas
+
+Uso de abstração MCP para desacoplar lógica de IA
+Separação por adapters para múltiplos provedores
+Gerenciamento de contexto para conversas mais inteligentes
+Configuração via .env para segurança
+Estrutura modular para fácil expansão
+
+---
+
+📦 Casos de Uso
+
+- 🤖 Chatbots inteligentes
+- 🧠 Sistemas com memória de contexto
+- 🔄 Orquestração de múltiplos modelos
+- 📊 Aplicações de IA corporativa
+- 🔌 Integração com pipelines de LLMOps
+
+---
+
+🔐 Segurança
+
+- Não versionar .env
+- Usar secrets em produção
+- Implementar autenticação para APIs externas
+- Monitorar uso de tokens
+
+---
+
+🚀 Possíveis Evoluções
+
+- 🧠 Memória persistente (Redis / banco de dados)
+- 🔄 Integração com LangChain
+- 📊 Observabilidade (logs + métricas)
+- ⚡ Cache de respostas
+- 🔍 RAG (Retrieval-Augmented Generation)
+- 🌐 API REST para consumo externo
+
+---
+
+🚀 Deploy
+
+- Docker
+- docker build -t mcp-client .
+- docker run -p 8000:8000 mcp-client
+- Cloud
+- Render
+- Railway
+- AWS
+
+Configurar variáveis:
+
+OPENAI_API_KEY
+MODEL_NAME
+
+---
+
+🎯 Objetivo do Projeto
+
+- Demonstrar uso do Model Context Protocol
+- Criar base reutilizável para aplicações com LLMs
+- Facilitar integração com múltiplos provedores de IA
+- Servir como foundation para LLMOps
+
+---
+
+📚 Referências
+
+- https://platform.openai.com/docs
+- https://huggingface.co/docs
+- https://modelcontextprotocol.io
+ (se aplicável)
+ ---
