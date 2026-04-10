@@ -78,13 +78,21 @@ python app/main.py
 🔄 Fluxo de Funcionamento
 
 - Cliente MCP
+
    ↓
+   
 - Gerenciamento de Contexto
+
    ↓
+   
 - Adapter (OpenAI / Hugging Face)
+
    ↓
+   
 - Modelo de Linguagem (LLM)
+
    ↓
+   
 - Resposta estruturada
 
 ---
